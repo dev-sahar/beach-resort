@@ -4,26 +4,21 @@ import RoomsFilter from "../rooms-filter/rooms-filter.component";
 import RoomsList from "../rooms-list/rooms-list.component";
 import Spinner from "../spinner/spinner.component";
 
-import RoomConsumer from "../../consumers/room/room.consumer";
+import { withRoomConsumer } from "../../consumers/room/room.consumer";
 
-const RoomsPreview = () => (
+const RoomsPreview = ({ context }) => {
+    
+    const { loading, sortedRooms, rooms } = context;
 
-    <RoomConsumer>
-        {
-            value => {
-                const { loading, sortedRooms, rooms } = value;
+    if(loading) return <Spinner />
 
-                if(loading) return <Spinner />
+    return (
+        <div>
+            <RoomsFilter rooms={rooms} />
+            <RoomsList rooms={sortedRooms} />
+        </div>
+    )
+            
+};
 
-                return (
-                    <div>
-                        <RoomsFilter rooms={rooms} />
-                        <RoomsList rooms={sortedRooms} />
-                    </div>
-                )
-            }
-        }
-    </RoomConsumer>
-);
-
-export default RoomsPreview;
+export default withRoomConsumer(RoomsPreview);

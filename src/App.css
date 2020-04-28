@@ -75,12 +75,6 @@ h6 {
   text-transform: uppercase;
   margin: 2rem 0;
 }
-.empty-search {
-  text-align: center;
-  text-transform: capitalize;
-  margin: 2rem 0;
-  padding: 1rem;
-  letter-spacing: var(--mainSpacing);
-}
+
 /* end of globals */
 
