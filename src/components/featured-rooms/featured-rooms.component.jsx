@@ -11,9 +11,7 @@ import "./featured-rooms.styles.scss";
 const FeaturedRooms = () => {
     const context = useContext(RoomContext);
     let {loading, featuredRooms } = context;
-
-    console.log(context);
-    
+   
     const rooms = featuredRooms.map(room => (
         <Room key={room.id} room={room} />
     ));

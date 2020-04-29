@@ -10,7 +10,7 @@ const RoomsFilter = ({rooms}) => {
 
     const context = useContext(RoomContext);
     const { handleChange, searchFilters: {type, capacity, price, minPrice, maxPrice, minSize, maxSize, breakfast, pets}} = context;
-    console.log("context",context)
+
     const getUnique = (items, value) => {
         return [...new Set(items.map(item => item[value]))]
     } 

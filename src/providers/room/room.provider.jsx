@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef, useReducer } 
 
 import RoomContext from "../../contexts/room/room.context";
 
-import items from "../../data";
+import Client from "../../contentful";
 
 const RoomProvider = props => {
     
@@ -52,26 +52,40 @@ const RoomProvider = props => {
         [rooms]
       );
 
+
     //componentDidMount  
     useEffect(() => {
-        
-        let rooms = formatData(items);
-        let featuredRooms = rooms.filter(room => room.featured === true);
+        const getData = async () => {
+            try {
+                const response = await Client.getEntries({
+                    content_type: "beachResortRoom",
+                    order: "sys.createdAt"
+                });
+                
+                let rooms = formatData(response.items);
+                let featuredRooms = rooms.filter(room => room.featured === true);
 
-        let maxPrice = Math.max(...rooms.map(room => room.price));
-        let maxSize = Math.max(...rooms.map(room => room.size));
+                let maxPrice = Math.max(...rooms.map(room => room.price));
+                let maxSize = Math.max(...rooms.map(room => room.size));
 
-        setRooms(rooms);
-        setSortedRooms(rooms);
-        setFeaturedRooms(featuredRooms);
-        setLoading(false);
+                setRooms(rooms);
+                setSortedRooms(rooms);
+                setFeaturedRooms(featuredRooms);
+                setLoading(false);
 
-        setSearchFilters({
-            ...searchFilters,
-            price: maxPrice,
-            maxPrice,
-            maxSize
-        });
+                setSearchFilters({
+                    ...searchFilters,
+                    price: maxPrice,
+                    maxPrice,
+                    maxSize
+                });
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getData();
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -102,7 +116,6 @@ const RoomProvider = props => {
         if(pets) {tempRooms = tempRooms.filter(room => room.pets === true)}        
             
         setSortedRooms(tempRooms);
-        console.log(tempRooms)
 
     }, [rooms, type, capacity, price, breakfast, pets, minSize, maxSize]);
 

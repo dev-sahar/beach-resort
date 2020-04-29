@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import defaultImg from "../../images/room-1.jpeg";
+import defaultImg from "../../assets/images/room-1.jpeg";
 
 const getImg = props => {
     return (

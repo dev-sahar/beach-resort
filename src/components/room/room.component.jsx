@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import defaultImage from "../../images/room-1.jpeg";
+import defaultImage from "../../assets/images/room-1.jpeg";
 
 import "./room.styles.scss";
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
-import defaultBcg from "../../images/room-1.jpeg";
+import defaultBcg from "../../assets/images/room-1.jpeg";
 
 import Banner from "../../components/banner/banner.component";
 
