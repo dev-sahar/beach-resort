@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import defaultBcg from "../../assets/images/room-1.jpeg";
 
+import Hero from "../../components/hero/hero.component";
 import Banner from "../../components/banner/banner.component";
 
 import HeroContainer from "../../components/hero/hero.styles";
@@ -23,11 +24,17 @@ const SingleRoom = props => {
 
     if(!room) {
         return (
-            <div className="error">
-                <h3>Room could not be found</h3>
-                <Link to="/rooms" className="btn-primary">
-                    Back to Rooms
-                </Link>
+            <div>
+                <Hero>
+                    <Banner
+                        title="Sorry"
+                        subtitle="Room could not be found"
+                    >
+                        <Link to="/rooms" className="btn-primary">
+                            Return to Rooms
+                        </Link>
+                    </Banner>
+                </Hero>
             </div>
         )
     }
